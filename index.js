@@ -19,3 +19,6 @@ const pool = new Pool({
     port: 5432,
 })
 
+// GET ALL
+app.get('/', (req, res) => {
+    console.log("TEST DATA :");
