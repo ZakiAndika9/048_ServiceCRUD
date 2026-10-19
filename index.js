@@ -71,3 +71,22 @@ app.put('/biodata/:id', (req, res) => {
         res.status(500).send('Internal Server Error');
     });
 });
+
+// DELETE (Hapus Data)
+app.delete('/biodata/:id', (req, res) => {
+    const { id } = req.params;
+
+    pool.query(
+        'DELETE FROM biodata WHERE id=$1 RETURNING *',
+        [id]
+    )
+
+    .catch(err => {
+        console.error(err);
+        res.status(500).send('Internal Server Error');
+    });
+});
+
+app.listen(port, () => {
+    console.log(`App running on port ${port}.`);
+});
